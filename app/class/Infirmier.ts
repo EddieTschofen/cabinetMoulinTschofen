@@ -1,12 +1,11 @@
-import{Personne,PersonneJSON} from "./Personne.ts";
-export interface InfirmierJSON extends PersonneJSON{
+import{Personne} from "./Personne";
+import {InfirmierJSON} from "./InfirmierJSON";
 
-}
 
-class Infirmier extends Personne{
-  id : number;
-  constructor(nom : string,prenom : string,adresse : string,id : number){
-    super(nom,prenom,adresse);
+class Infirmier extends Personne {
+  id: number;
+  constructor(nom: string, prenom: string, adresse: string, id: number) {
+    super(nom, prenom, adresse);
     this.id = id;
   }
 
@@ -14,7 +13,7 @@ class Infirmier extends Personne{
     return this.id;
   }
 
-  toJson():InfirmierJSON{
-    return Object.assign({},super.toJSON(),{id : this.getId()})
+  toJson(): InfirmierJSON {
+    return Object.assign({}, super.toJson(),{ id : this.getId()});
   }
 }

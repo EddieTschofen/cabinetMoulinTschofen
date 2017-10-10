@@ -18,9 +18,11 @@
     "fs-extra": "^4.0.1",
     "http": "0.0.0",
     "https": "^1.0.0",
+    "mongoose": "^4.12.1",
     "path": "^0.12.7"
   },
   "devDependencies": {
+    "@types/mongoose": "^4.7.23",
     "@types/node": "^8.0.26",
     "chokidar-cli": "^1.2.0",
     "module-alias": "^2.0.1",

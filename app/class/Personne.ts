@@ -1,27 +1,31 @@
-abstract class Personne{
-  nom : string;
-  prenom : string;
-  adresse : string;
+import {PersonneJSON} from "./PersonneJSON";
 
-  constructor(nom : string,prenom : string,adresse : string){
+export abstract class Personne {
+  nom: string;
+  prenom: string;
+  adresse: string;
+
+  constructor(nom: string, prenom: string, adresse: string) {
     this.nom = nom;
     this.prenom = prenom;
     this.adresse = adresse;
   }
 
-  getNom(){
+  getNom() {
     return this.nom;
   }
-  getPrenom(){
+  getPrenom() {
     return this.prenom;
   }
-  getAdresse(){
+  getAdresse() {
     return this.adresse;
   }
 
-  toJson():PersonneJSON{
+  toJson(): PersonneJSON {
     return {
-      nom:this.getNom();
+      nom: this.getNom(),
+      prenom: this.getPrenom(),
+      adresse : this.getAdresse()
     };
   }
 }
