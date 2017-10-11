@@ -1,9 +1,151 @@
-/*export function getRouterPatientRestApi(): Route {
-
-    const router:Router =
-
-
-
-
-    return router;
-}*/ 
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const Patient_1 = require("./class/Patient");
+const Infirmier_1 = require("./class/Infirmier");
+function getRouterPatientRestApi() {
+    let express = require("express");
+    // let Papp = express();
+    let Papp = new express.Router();
+    Papp.get("/getPatient", (req, res) => {
+        let patients = Patient_1.getAllPatients();
+        for (let patient of patients.values()) {
+            dumpJson(patient.toJson(), res);
+        }
+        res.end();
+    });
+    Papp.post("/addOrUpdatePatient", (req, res) => {
+        let error = 0;
+        let errorMessage = "";
+        if (req.body.name === undefined) {
+            errorMessage += "\nVous devez spécifier name";
+            error = 1;
+        }
+        if (req.body.forName === undefined) {
+            errorMessage += "\nVous devez spécifier forName";
+            error = 1;
+        }
+        if (req.body.socialSecurity === undefined) {
+            errorMessage += "\nVous devez spécifier socialSecurity";
+            error = 1;
+        }
+        /*if (req.body.patientSex === undefined) {
+          errorMessage += "\nVous devez spécifier patientSex";
+          error = 1;
+        }
+        else if (req.body.patientSex !== "M" || req.body.patientSex !== "F") {
+          errorMessage += "\npatientSex doit etre egal à M ou F";
+          error = 1;
+        }
+        if (req.body.birthday === undefined) {
+          errorMessage += "\nVous devez spécifier birthday";
+          error = 1;
+        }*/
+        if (req.body.adress === undefined) {
+            errorMessage += "\nVous devez spécifier adress";
+            error = 1;
+        }
+        if (error === 1) {
+            errorMessage += "\n";
+            res.status(400);
+            res.send(errorMessage);
+        }
+        else {
+            // si patient n'existe pas, l'ajouter
+            if (Patient_1.getPatientFromSocial(req.body.socialSecurity) === undefined) {
+                Patient_1.getNewPatient(req.body.name, req.body.forName, req.body.adress, req.body.socialSecurity);
+            }
+            else {
+                Patient_1.updatePatient(req.body.socialSecurity, req.body.name, req.body.forName, req.body.adress);
+            }
+        }
+        res.end();
+    });
+    Papp.post("/deletePatient", (req, res) => {
+        if (req.body.SSN === undefined) {
+            res.status(400);
+            res.send("Please enter security number");
+        }
+        else {
+            Patient_1.deletePatient(req.body.SSN);
+        }
+    });
+    return Papp;
+}
+exports.getRouterPatientRestApi = getRouterPatientRestApi;
+function getRouterNurseRestApi() {
+    let express = require("express");
+    // let Napp = express();
+    let Napp = new express.Router();
+    Napp.get("/getNurse", (req, res) => {
+        let nurses = Infirmier_1.getAllNurses();
+        for (let nurse of nurses.values()) {
+            dumpJson(nurse.toJson(), res);
+        }
+        res.end();
+    });
+    Napp.post("/addOrUpdateNurse", (req, res) => {
+        let error = 0;
+        let errorMessage = "";
+        if (req.body.id === undefined) {
+            errorMessage += "\nVous devez spécifier id";
+            error = 1;
+        }
+        if (req.body.name === undefined) {
+            errorMessage += "\nVous devez spécifier name";
+            error = 1;
+        }
+        if (req.body.forName === undefined) {
+            errorMessage += "\nVous devez spécifier forName";
+            error = 1;
+        }
+        /*if (req.body.patientSex === undefined) {
+          errorMessage += "\nVous devez spécifier patientSex";
+          error = 1;
+        }
+        else if (req.body.patientSex !== "M" || req.body.patientSex !== "F") {
+          errorMessage += "\npatientSex doit etre egal à M ou F";
+          error = 1;
+        }
+        if (req.body.birthday === undefined) {
+          errorMessage += "\nVous devez spécifier birthday";
+          error = 1;
+        }*/
+        if (req.body.adress === undefined) {
+            errorMessage += "\nVous devez spécifier adress";
+            error = 1;
+        }
+        if (error === 1) {
+            errorMessage += "\n";
+            res.status(400);
+            res.send(errorMessage);
+        }
+        else {
+            // si patient n'existe pas, l'ajouter
+            if (Infirmier_1.getNurseFromID(req.body.id) === undefined) {
+                Patient_1.getNewPatient(req.body.name, req.body.forName, req.body.adress, req.body.id);
+            }
+            else {
+                Patient_1.updatePatient(req.body.id, req.body.name, req.body.forName, req.body.adress);
+            }
+        }
+    });
+    Napp.post("/deleteNurse", (req, res) => {
+        if (req.body.id === undefined) {
+            res.status(400);
+            res.send("Please enter ID");
+        }
+        else {
+            Infirmier_1.deleteNurses(req.body.id);
+        }
+    });
+    return Napp;
+}
+exports.getRouterNurseRestApi = getRouterNurseRestApi;
+function dumpJson(obj, res) {
+    let out = "";
+    for (let i in obj) {
+        out += i + ": " + obj[i] + "\n";
+    }
+    out += "\n";
+    res.write(out);
+}

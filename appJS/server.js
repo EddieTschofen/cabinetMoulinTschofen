@@ -8,6 +8,7 @@ const express = require("express"); // The application server
 const bodyParser = require("body-parser"); // Parse HTTP GET and POST variables
 const path = require("path"); // Deal with system paths
 const fs = require("fs-extra");
+const router_1 = require("./router");
 const app = express();
 // HTTP
 const serverHTTP = http.createServer(app);
@@ -58,54 +59,5 @@ app.get("/testParams", (req, res) => {
         res.end();
     }
 });
-app.post("/addPatient", (req, res) => {
-    let error = 0;
-    let errorMessage = "";
-    if (req.body.name === undefined) {
-        errorMessage += "\nVous devez spécifier name";
-        error = 1;
-    }
-    if (req.body.forName === undefined) {
-        errorMessage += "\nVous devez spécifier forName";
-        error = 1;
-    }
-    if (req.body.socialSecurity === undefined) {
-        errorMessage += "\nVous devez spécifier socialSecurity";
-        error = 1;
-    }
-    /*if (req.body.patientSex === undefined) {
-      errorMessage += "\nVous devez spécifier patientSex";
-      error = 1;
-    }
-    else if (req.body.patientSex !== "M" || req.body.patientSex !== "F") {
-      errorMessage += "\npatientSex doit etre egal à M ou F";
-      error = 1;
-    }
-    if (req.body.birthday === undefined) {
-      errorMessage += "\nVous devez spécifier birthday";
-      error = 1;
-    }*/
-    if (req.body.adress === undefined) {
-        errorMessage += "\nVous devez spécifier adress";
-        error = 1;
-    }
-    if (error === 1) {
-        res.status(400);
-        res.send(errorMessage);
-    }
-    else {
-        //ajouter patient
-    }
-});
-app.get("/getNurse", (req, res) => {
-});
-app.post("/addOrUpdateNurse", (req, res) => {
-});
-app.post("/deleteNurse", (req, res) => {
-});
-app.get("/getPatient", (req, res) => {
-});
-app.post("/addOrUpdatePatient", (req, res) => {
-});
-app.post("/deletePatient", (req, res) => {
-});
+app.use("/patient", router_1.getRouterPatientRestApi());
+app.use("/nurse", router_1.getRouterNurseRestApi());

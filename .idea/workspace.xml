@@ -2,19 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3b6d9e03-5e40-4641-883d-f954d44ed79c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/typescript-compiler.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/class/InfirmierJSON.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/class/PatientJSON.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/class/PersonneJSON.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/data/mongo.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/router.ts" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/npm-debug.log" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commandes" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/class/Infirmier.ts" afterPath="$PROJECT_DIR$/app/class/Infirmier.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/class/InfirmierJSON.ts" afterPath="$PROJECT_DIR$/app/class/InfirmierJSON.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/class/Patient.ts" afterPath="$PROJECT_DIR$/app/class/Patient.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/class/Personne.ts" afterPath="$PROJECT_DIR$/app/class/Personne.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/class/PatientJSON.ts" afterPath="$PROJECT_DIR$/app/class/PatientJSON.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/data/mongo.ts" afterPath="$PROJECT_DIR$/app/data/mongo.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/router.ts" afterPath="$PROJECT_DIR$/app/router.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/server.ts" afterPath="$PROJECT_DIR$/app/server.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/appJS/class/Infirmier.js" afterPath="$PROJECT_DIR$/appJS/class/Infirmier.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/appJS/class/Patient.js" afterPath="$PROJECT_DIR$/appJS/class/Patient.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/appJS/data/mongo.js" afterPath="$PROJECT_DIR$/appJS/data/mongo.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/appJS/router.js" afterPath="$PROJECT_DIR$/appJS/router.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/appJS/server.js" afterPath="$PROJECT_DIR$/appJS/server.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/npm-debug.log" afterPath="$PROJECT_DIR$/npm-debug.log" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -28,22 +31,48 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="router.ts" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/router.ts">
+      <file leaf-file-name="commandes" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/commandes">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="2" lean-forward="false" selection-start-line="0" selection-start-column="2" selection-end-line="0" selection-end-column="2" />
+            <state relative-caret-position="18">
+              <caret line="1" column="15" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="server.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/server.ts">
+      <file leaf-file-name="router.ts" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/router.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="105" column="9" lean-forward="false" selection-start-line="105" selection-start-column="9" selection-end-line="105" selection-end-column="9" />
-              <folding />
+            <state relative-caret-position="804">
+              <caret line="134" column="0" lean-forward="false" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#114#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Patient.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/class/Patient.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-6">
+              <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="21" selection-end-column="5" />
+              <folding>
+                <element signature="e#0#35#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Infirmier.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/class/Infirmier.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="516">
+              <caret line="42" column="45" lean-forward="false" selection-start-line="42" selection-start-column="45" selection-end-line="42" selection-end-column="45" />
+              <folding>
+                <element signature="e#0#35#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -57,6 +86,12 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>num</find>
+      <find>P</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -65,13 +100,14 @@
       <list>
         <option value="$PROJECT_DIR$/app/class/PersonJSON.ts" />
         <option value="$PROJECT_DIR$/app/class/PersonneJSON.ts" />
-        <option value="$PROJECT_DIR$/app/class/InfirmierJSON.ts" />
-        <option value="$PROJECT_DIR$/app/class/PatientJSON.ts" />
         <option value="$PROJECT_DIR$/app/class/Personne.ts" />
-        <option value="$PROJECT_DIR$/app/class/Infirmier.ts" />
-        <option value="$PROJECT_DIR$/app/class/Patient.ts" />
-        <option value="$PROJECT_DIR$/app/data/mongo.ts" />
         <option value="$PROJECT_DIR$/app/server.ts" />
+        <option value="$PROJECT_DIR$/app/class/PatientJSON.ts" />
+        <option value="$PROJECT_DIR$/app/class/InfirmierJSON.ts" />
+        <option value="$PROJECT_DIR$/commandes" />
+        <option value="$PROJECT_DIR$/app/data/mongo.ts" />
+        <option value="$PROJECT_DIR$/app/class/Patient.ts" />
+        <option value="$PROJECT_DIR$/app/class/Infirmier.ts" />
         <option value="$PROJECT_DIR$/app/router.ts" />
       </list>
     </option>
@@ -147,6 +183,8 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.tslint" value="$PROJECT_DIR$/node_modules/tslint" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.TypeScript" />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -171,12 +209,12 @@
       <option name="presentableId" value="Default" />
       <updated>1507642476548</updated>
       <workItem from="1507642479625" duration="42000" />
-      <workItem from="1507642560997" duration="4637000" />
+      <workItem from="1507642560997" duration="16440000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4679000" />
+    <option name="totallyTimeSpent" value="16482000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="26" width="1602" height="875" extended-state="6" />
@@ -223,38 +261,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/class/PersonneJSON.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="1" lean-forward="true" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/class/InfirmierJSON.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="45" lean-forward="false" selection-start-line="2" selection-start-column="45" selection-end-line="2" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/class/PatientJSON.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="33" lean-forward="true" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/data/mongo.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="59" lean-forward="true" selection-start-line="0" selection-start-column="59" selection-end-line="0" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/class/Personne.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="414">
@@ -263,10 +269,60 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/class/PersonneJSON.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="20" lean-forward="true" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/server.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="72" column="0" lean-forward="false" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
+          <folding>
+            <element signature="e#487#518#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/class/InfirmierJSON.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="21" lean-forward="true" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/class/PatientJSON.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="32" lean-forward="false" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/data/mongo.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commandes">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1" column="15" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/class/Patient.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="16" column="23" lean-forward="false" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
+        <state relative-caret-position="-6">
+          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="21" selection-end-column="5" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>
@@ -275,27 +331,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/class/Infirmier.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="16" column="39" lean-forward="false" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
+        <state relative-caret-position="516">
+          <caret line="42" column="45" lean-forward="false" selection-start-line="42" selection-start-column="45" selection-end-line="42" selection-end-column="45" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/server.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="105" column="9" lean-forward="false" selection-start-line="105" selection-start-column="9" selection-end-line="105" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/router.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="2" lean-forward="false" selection-start-line="0" selection-start-column="2" selection-end-line="0" selection-end-column="2" />
-          <folding />
+        <state relative-caret-position="804">
+          <caret line="134" column="0" lean-forward="false" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#114#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

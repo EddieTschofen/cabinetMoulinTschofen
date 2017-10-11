@@ -1,0 +1,7 @@
+eddie@eddie-VPCEC4S0E:~/Téléchargements/curl-7.56.0$
+curl --data "name=Moulin&forName=Alexandr&socialSecurity=0123456&adress=stegreve" http://localhost:8080/patient/addOrUpdatePatient
+curl --data "name=Moulin&forName=Alexandre&socialSecurity=0123456&adress=stegreve" http://localhost:8080/patient/addOrUpdatePatient
+curl --data "name=Tschofen&forName=Eddie&socialSecurity=98765&adress=Claix" http://localhost:8080/patient/addOrUpdatePatient
+
+eddie@eddie-VPCEC4S0E:~/Documents/a2/cabinetMoulinTschofen$ npm run compile
+eddie@eddie-VPCEC4S0E:~/Documents/a2/cabinetMoulinTschofen$ npm start
