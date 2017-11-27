@@ -10,6 +10,9 @@ const path = require("path"); // Deal with system paths
 const fs = require("fs-extra");
 const router_1 = require("./router");
 const mongo_1 = require("@data/mongo");
+const passport = require("passport");
+const cookieParser = require("cookie-parser");
+const OAuth_1 = require("app/OAuth/OAuth");
 const app = express();
 // HTTP
 const serverHTTP = http.createServer(app);
@@ -33,6 +36,23 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
     res.json({ message: "Il va falloir implémenter tout ça... peut etre... un jour" });
     mongo_1.connectToMongo();
+});
+// Auth
+let sessionMiddleware = session({
+    secret: "thisIsAVerySecretMessage",
+    resave: true,
+    saveUninitialized: true
+});
+app.use(cookieParser());
+app.use(sessionMiddleware);
+app.use(passport.initialize());
+app.use(passport.session());
+const IdentifiedOrLogin = OAuth_1.checkIsAuthentified(401, "/login.html");
+// Utilisez ensuite IdentifiedOrLogin conditionner l’accès aux ressource “/” et “/data” par exemple, vérifiez que cela fonctionne.
+// Static files
+app.get("/login.html", (req, res) => {
+    let PATH_TO_LOGIN_HTML = "OAuth/login.html";
+    res.sendFile(path.join(__dirname, PATH_TO_LOGIN_HTML));
 });
 const datapath = path.join(__dirname, "../app/data");
 console.log(datapath);
