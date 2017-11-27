@@ -1,5 +1,8 @@
 import {deletePatient, getAllPatients, getNewPatient, getPatientFromSocial, updatePatient} from "./class/Patient";
-import {deleteNurses, getAllNurses, getNurseFromID} from "./class/Infirmier";
+import {
+    deleteNurses, getAllNurses, getNewNurse, getNurseFromID/*, obsRemovedInfirmier*/, updateNurse
+} from "./class/Infirmier";
+// import {InfirmierJSON} from "./class/InfirmierJSON";
 
 export function getRouterPatientRestApi() {
     let express = require("express");
@@ -54,6 +57,7 @@ export function getRouterPatientRestApi() {
             // si patient n'existe pas, l'ajouter
             if (getPatientFromSocial(req.body.socialSecurity) === undefined) {
                 getNewPatient(req.body.name, req.body.forName, req.body.adress, req.body.socialSecurity);
+
             }
             else {
                 updatePatient(req.body.socialSecurity, req.body.name, req.body.forName, req.body.adress);
@@ -63,12 +67,13 @@ export function getRouterPatientRestApi() {
     });
 
     Papp.post("/deletePatient", (req, res) => {
-        if (req.body.SSN === undefined) {
+        if (req.body.socialSecurity === undefined) {
             res.status(400);
             res.send("Please enter security number");
         }
         else {
-            deletePatient(req.body.SSN);
+            // console.log(req.body.socialSecurity);
+            deletePatient(req.body.socialSecurity);
         }
     });
     return Papp;
@@ -125,12 +130,12 @@ export function getRouterNurseRestApi() {
             res.send(errorMessage);
         }
         else {
-            // si patient n'existe pas, l'ajouter
+            // si infirmier n'existe pas, l'ajouter
             if (getNurseFromID(req.body.id) === undefined) {
-                getNewPatient(req.body.name, req.body.forName, req.body.adress, req.body.id);
+                getNewNurse(req.body.name, req.body.forName, req.body.adress, req.body.id);
             }
             else {
-                updatePatient(req.body.id, req.body.name, req.body.forName, req.body.adress);
+                updateNurse(req.body.id, req.body.name, req.body.forName, req.body.adress);
             }
         }
     });

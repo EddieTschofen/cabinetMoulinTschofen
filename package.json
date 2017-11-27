@@ -19,7 +19,8 @@
     "http": "0.0.0",
     "https": "^1.0.0",
     "mongoose": "^4.12.1",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "rxjs": "^5.5.0"
   },
   "devDependencies": {
     "@types/mongoose": "^4.7.23",
@@ -29,5 +30,8 @@
     "npm-run-all": "^4.1.1",
     "tslint": "^5.7.0",
     "typescript": "^2.5.2"
+  },
+  "_moduleAliases": {
+    "@data": "./appJS/data"
   }
 }

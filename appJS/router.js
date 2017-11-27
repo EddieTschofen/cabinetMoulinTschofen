@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const Patient_1 = require("./class/Patient");
 const Infirmier_1 = require("./class/Infirmier");
+// import {InfirmierJSON} from "./class/InfirmierJSON";
 function getRouterPatientRestApi() {
     let express = require("express");
     // let Papp = express();
@@ -61,12 +62,13 @@ function getRouterPatientRestApi() {
         res.end();
     });
     Papp.post("/deletePatient", (req, res) => {
-        if (req.body.SSN === undefined) {
+        if (req.body.socialSecurity === undefined) {
             res.status(400);
             res.send("Please enter security number");
         }
         else {
-            Patient_1.deletePatient(req.body.SSN);
+            // console.log(req.body.socialSecurity);
+            Patient_1.deletePatient(req.body.socialSecurity);
         }
     });
     return Papp;
@@ -120,12 +122,12 @@ function getRouterNurseRestApi() {
             res.send(errorMessage);
         }
         else {
-            // si patient n'existe pas, l'ajouter
+            // si infirmier n'existe pas, l'ajouter
             if (Infirmier_1.getNurseFromID(req.body.id) === undefined) {
-                Patient_1.getNewPatient(req.body.name, req.body.forName, req.body.adress, req.body.id);
+                Infirmier_1.getNewNurse(req.body.name, req.body.forName, req.body.adress, req.body.id);
             }
             else {
-                Patient_1.updatePatient(req.body.id, req.body.name, req.body.forName, req.body.adress);
+                Infirmier_1.updateNurse(req.body.id, req.body.name, req.body.forName, req.body.adress);
             }
         }
     });

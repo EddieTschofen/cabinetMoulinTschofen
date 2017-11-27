@@ -9,6 +9,7 @@ const bodyParser = require("body-parser"); // Parse HTTP GET and POST variables
 const path = require("path"); // Deal with system paths
 const fs = require("fs-extra");
 const router_1 = require("./router");
+const mongo_1 = require("@data/mongo");
 const app = express();
 // HTTP
 const serverHTTP = http.createServer(app);
@@ -31,6 +32,7 @@ app.use(bodyParser.json()); // get information from html forms
 app.use(bodyParser.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
     res.json({ message: "Il va falloir implémenter tout ça... peut etre... un jour" });
+    mongo_1.connectToMongo();
 });
 const datapath = path.join(__dirname, "../app/data");
 console.log(datapath);
@@ -61,3 +63,4 @@ app.get("/testParams", (req, res) => {
 });
 app.use("/patient", router_1.getRouterPatientRestApi());
 app.use("/nurse", router_1.getRouterNurseRestApi());
+mongo_1.loadDatabase();

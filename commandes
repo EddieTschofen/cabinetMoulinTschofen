@@ -3,5 +3,24 @@ curl --data "name=Moulin&forName=Alexandr&socialSecurity=0123456&adress=stegreve
 curl --data "name=Moulin&forName=Alexandre&socialSecurity=0123456&adress=stegreve" http://localhost:8080/patient/addOrUpdatePatient
 curl --data "name=Tschofen&forName=Eddie&socialSecurity=98765&adress=Claix" http://localhost:8080/patient/addOrUpdatePatient
 
+curl --data "name=Moulin&forName=Alexandr&id=0515&adress=stegreve" http://localhost:8080/nurse/addOrUpdateNurse
+curl --data "id=0515" http://localhost:8080/nurse/deleteNurse
+
+curl --data "name=Goubet&forName=Emeric&socialSecurity=000000&adress=ici" http://localhost:8080/patient/addOrUpdatePatient
+curl --data "socialSecurity=000000" http://localhost:8080/patient/deletePatient
+curl --data "socialSecurity=000001" http://localhost:8080/patient/deletePatient
+
+
 eddie@eddie-VPCEC4S0E:~/Documents/a2/cabinetMoulinTschofen$ npm run compile
 eddie@eddie-VPCEC4S0E:~/Documents/a2/cabinetMoulinTschofen$ npm start
+
+
+ssh -L 15625:ds115625.mlab.com/medcab:15625 tschofee@imss-dc.upmf-grenoble.fr
+
+use cabinet-medical
+
+db.createUser( {
+	user: "tschoo",
+	pwd: "qwerty12334",
+	roles: [ "readWrite", "dbAdmin" ]
+}, "" )

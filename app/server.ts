@@ -8,6 +8,8 @@ import * as bodyParser from "body-parser";      // Parse HTTP GET and POST varia
 import * as path from "path";                   // Deal with system paths
 import * as fs from "fs-extra";
 import {getRouterNurseRestApi, getRouterPatientRestApi} from "./router";
+import {connectToMongo, loadDatabase} from "@data/mongo";
+
 
 const app: express.Application = express();
 
@@ -35,7 +37,9 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.get("/", (req, res) => {
    res.json( {message: "Il va falloir implémenter tout ça... peut etre... un jour"} );
+   connectToMongo();
 });
+
 
 const datapath = path.join(__dirname, "../app/data");
 console.log(datapath);
@@ -72,5 +76,4 @@ app.get("/testParams", (req, res) => {
 app.use("/patient", getRouterPatientRestApi());
 app.use("/nurse", getRouterNurseRestApi());
 
-
-
+loadDatabase();
