@@ -4,9 +4,8 @@ import * as mongoose from "mongoose";
 (<any>mongoose).Promise = Promise;
 
 import {connect, model, Schema} from "mongoose";
-import {getNewNurse, nurseFromDatabase, obsAddedInfirmier, obsRemovedInfirmier} from "../class/Infirmier";
+import {nurseFromDatabase, obsAddedInfirmier, obsRemovedInfirmier} from "../class/Infirmier";
 import {obsAddedPatient, obsRemovedPatient, patientFromDatabase} from "../class/Patient";
-
 
 const patientSchema = new Schema({
     socialSecurity  : {type: String, unique: true},
@@ -103,14 +102,14 @@ export function loadDatabase() {
         if (err) return console.error(err);
         // console.log(allNurses);
         allNurses.forEach(function(n){
-            nurseFromDatabase(n.name,n.forName,n.adress,n.nurseId);
+            nurseFromDatabase(n.name, n.forName, n.adress, n.nurseId);
         });
     });
     patientModel.find(function (err, allPatient) {
         if (err) return console.error(err);
         console.log(allPatient);
         allPatient.forEach(function(p){
-            patientFromDatabase(p.name,p.forName,p.adress,p.socialSecurity);
+            patientFromDatabase(p.name, p.forName, p.adress, p.socialSecurity);
         });
     });
 
