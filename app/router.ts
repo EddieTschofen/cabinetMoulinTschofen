@@ -22,6 +22,14 @@ export function getRouterPatientRestApi() {
         res.json(getAllPatients().get(p));
     });
 
+    Papp.get("/getUnaffectedPatients", (req, res) => {
+        let affectedPatients = [];
+        for (let nurse of getAllNurses().values()){
+            affectedPatients.push(nurse.patientsSSN);
+        }
+        res.json(affectedPatients);
+    });
+
     Papp.post("/addOrUpdatePatient", (req, res) => {
         let error = 0;
         let errorMessage = "";

@@ -72,8 +72,11 @@ export function emptyNurseMap() {
     mapNurses.clear();
 }
 export function addPatientTo(nurseId: string, SSN: string) {
+    let N = getNurseFromID(nurseId);
+    subjectRemovedInfirmier.next(N);
     console.log("ajout de " + SSN + " pour " + nurseId);
-    getNurseFromID(nurseId).addPatient(SSN);
+    N.addPatient(SSN);
+    // subjectAddInfirmier.next(N);
 }
 
 

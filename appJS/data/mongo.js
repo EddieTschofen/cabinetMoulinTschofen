@@ -10,7 +10,8 @@ const patientSchema = new mongoose_1.Schema({
     socialSecurity: { type: String, unique: true },
     name: String,
     forName: String,
-    adress: String
+    adress: String,
+    pathology: String
 });
 const patientModel = mongoose_1.model("patients", patientSchema);
 const nurseSchema = new mongoose_1.Schema({
@@ -19,7 +20,8 @@ const nurseSchema = new mongoose_1.Schema({
     forName: String,
     // socialSecurity  : {type: String, unique: true},
     /*birthday        : String,*/
-    adress: String
+    adress: String,
+    patientsSSN: [String]
 });
 const nurseModel = mongoose_1.model("nurses", nurseSchema);
 Patient_1.obsAddedPatient.subscribe(Patient => { AddPatientMongo(Patient); });
@@ -30,7 +32,7 @@ function AddPatientMongo(p) {
     console.log("AddPatientMongo");
     // connectToMongo();
     console.log(p);
-    let mod = new patientModel({ socialSecurity: p.getSSN(), name: p.getNom(), forName: p.getPrenom(), adress: p.getAdresse() });
+    let mod = new patientModel({ socialSecurity: p.getSSN(), name: p.getNom(), forName: p.getPrenom(), adress: p.getAdresse(), pathology: p.pathology });
     mod.save(function (err, p) {
         if (err) {
             return console.error(err);
@@ -51,7 +53,7 @@ function AddNurseMongo(n) {
     console.log("AddNurseMongo");
     // connectToMongo();
     console.log(n);
-    let mod = new nurseModel({ nurseId: n.getId(), name: n.getNom(), forName: n.getPrenom(), adress: n.getAdresse() });
+    let mod = new nurseModel({ nurseId: n.getId(), name: n.getNom(), forName: n.getPrenom(), adress: n.getAdresse(), patientsSSN: n.getPatientsSSN() });
     mod.save(function (err, n) {
         if (err) {
             return console.error(err);
@@ -65,7 +67,7 @@ function RemoveNurseMongo(n) {
     // connectToMongo();
     console.log("RemoveNurseMongo : " + n.id);
     nurseModel.remove({ nurseId: n.id.toString() }, function (err) {
-        console.log(err);
+        console.log("suppression err : " + err);
     });
 }
 function connectToMongo() {
@@ -80,6 +82,7 @@ function loadDatabase() {
         // console.log(allNurses);
         allNurses.forEach(function (n) {
             Infirmier_1.nurseFromDatabase(n.name, n.forName, n.adress, n.nurseId);
+            // TODO : remplir patients
         });
     });
     patientModel.find(function (err, allPatient) {
@@ -94,22 +97,28 @@ function loadDatabase() {
 exports.loadDatabase = loadDatabase;
 function initDdbTest() {
     // connectToMongo();
-    nurseModel.remove({}, function (err) {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            console.log("Empty nurses");
-        }
+    mongoose.connection.collections["nurses"].drop(function (err) {
+        console.log("collection dropped");
     });
-    patientModel.remove({}, function (err) {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            console.log("Empty patients");
-        }
+    mongoose.connection.collections["patients"].drop(function (err) {
+        console.log("collection dropped");
     });
+    // nurseModel.remove({}, function(err) {
+    //         if (err) {
+    //             console.log(err);
+    //         } else {
+    //             console.log("Empty nurses");
+    //         }
+    //     }
+    // );
+    // patientModel.remove({}, function(err) {
+    //         if (err) {
+    //             console.log(err);
+    //         } else {
+    //             console.log("Empty patients");
+    //         }
+    //     }
+    // );
     Infirmier_1.emptyNurseMap();
     Patient_1.emptyPatientMap();
     Infirmier_1.getNewNurse("Tschoo", "Eddie", "Grenoble", "01");

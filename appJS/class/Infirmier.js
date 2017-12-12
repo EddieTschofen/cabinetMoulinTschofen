@@ -66,8 +66,11 @@ function emptyNurseMap() {
 }
 exports.emptyNurseMap = emptyNurseMap;
 function addPatientTo(nurseId, SSN) {
+    let N = getNurseFromID(nurseId);
+    subjectRemovedInfirmier.next(N);
     console.log("ajout de " + SSN + " pour " + nurseId);
-    getNurseFromID(nurseId).addPatient(SSN);
+    N.addPatient(SSN);
+    // subjectAddInfirmier.next(N);
 }
 exports.addPatientTo = addPatientTo;
 const subjectAddInfirmier = new Subject_1.Subject();

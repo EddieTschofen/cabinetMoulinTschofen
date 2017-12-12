@@ -18,6 +18,13 @@ function getRouterPatientRestApi() {
         let p = req.params.patientID;
         res.json(Patient_1.getAllPatients().get(p));
     });
+    Papp.get("/getUnaffectedPatients", (req, res) => {
+        let affectedPatients = [];
+        for (let nurse of Infirmier_1.getAllNurses().values()) {
+            affectedPatients.push(nurse.patientsSSN);
+        }
+        res.json(affectedPatients);
+    });
     Papp.post("/addOrUpdatePatient", (req, res) => {
         let error = 0;
         let errorMessage = "";

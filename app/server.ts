@@ -42,9 +42,9 @@ app.get("/", (req, res) => {
    connectToMongo();
 });
 
-
 const datapath = path.join(__dirname, "../app/data");
 console.log(datapath);
+
 app.use("/data", express.static(datapath));
 
 app.get("/test", (req, res) => {
@@ -52,24 +52,15 @@ app.get("/test", (req, res) => {
 });
 
 app.get("/testParams", (req, res) => {
-  // res.charset="UTF-8";
   res.setHeader("Content-type", "Text/html;charset=UTF-8");
   if (req.query.nom === undefined || req.query.prenom === undefined) {
     res.status(400);
     res.send("Vous devez spécifier un nom et un prenom");
   }
   else {
-
-      // let str = "";
-      // let wanted = ['nom','prenom'];
       for (let attr in req.query) {
-        // str +="${attr} : ${req.query[attr]}\n";
-        // str += attr+" : "+req.query[attr]+"\n";
-        // res.write('${attr} : ${req.query[attr]}\n');
         res.write(attr + " : " + req.query[attr] + "\n" );
       }
-      // res.json(req.query);
-      // res.end(str);
       res.end();
   }
 });
@@ -93,6 +84,8 @@ app.get("/getDataCabinet", (req, res) => {
     }
 
     let cabinet = {};
+    cabinet["name"] = "Cabinet Moulin-Tschofen";
+    cabinet["address"] = "37 rue de la boustifaille";
     cabinet["nurses"] = nurseJson;
     cabinet["patients"] = patientJson;
 
