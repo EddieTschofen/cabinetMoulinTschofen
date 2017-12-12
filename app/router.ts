@@ -17,6 +17,11 @@ export function getRouterPatientRestApi() {
         res.end();
     });
 
+    Papp.get("/getPatient/:patientID", (req, res) => {
+        let n = req.params.nurseID;
+        res.json(getAllNurses().get(n));
+    });
+
     Papp.post("/addOrUpdatePatient", (req, res) => {
         let error = 0;
         let errorMessage = "";
@@ -95,6 +100,11 @@ export function getRouterNurseRestApi() {
             dumpJson(nurse.toJson(), res);
         }
         res.end();
+    });
+
+    Napp.get("/getNurse/:nurseID", (req, res) => {
+        let n = req.params.nurseID;
+        res.json(getAllNurses().get(n));
     });
 
     Napp.post("/addOrUpdateNurse", (req, res) => {
