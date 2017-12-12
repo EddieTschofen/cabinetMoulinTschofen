@@ -12,7 +12,7 @@ export function getRouterPatientRestApi() {
     Papp.get("/getPatient", (req, res) => {
         let patients = getAllPatients();
         for (let patient of patients.values()){
-            dumpJson(patient.toJson(), res);
+            res.json(patient);
         }
         res.end();
     });
@@ -97,7 +97,7 @@ export function getRouterNurseRestApi() {
     Napp.get("/getNurse", (req, res) => {
         let nurses = getAllNurses();
         for (let nurse of nurses.values()){
-            dumpJson(nurse.toJson(), res);
+            res.json(nurse);
         }
         res.end();
     });
