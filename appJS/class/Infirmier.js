@@ -6,9 +6,16 @@ class Infirmier extends Personne_1.Personne {
     constructor(nom, prenom, adresse, id) {
         super(nom, prenom, adresse);
         this.id = id;
+        this.patientsSSN = [];
     }
     getId() {
         return this.id;
+    }
+    getPatientsSSN() {
+        return this.patientsSSN;
+    }
+    addPatient(SSN) {
+        this.patientsSSN.push(SSN);
     }
     update(nom, prenom, adresse) {
         this.nom = nom;
@@ -16,7 +23,7 @@ class Infirmier extends Personne_1.Personne {
         this.adresse = adresse;
     }
     toJson() {
-        return Object.assign({}, super.toJson(), { id: this.getId() });
+        return Object.assign({}, super.toJson(), { id: this.getId(), patients: this.getPatientsSSN() });
     }
 }
 const mapNurses = new Map();
@@ -54,6 +61,15 @@ function updateNurse(ID, nom, prenom, adresse) {
     subjectAddInfirmier.next(N);
 }
 exports.updateNurse = updateNurse;
+function emptyNurseMap() {
+    mapNurses.clear();
+}
+exports.emptyNurseMap = emptyNurseMap;
+function addPatientTo(nurseId, SSN) {
+    console.log("ajout de " + SSN + " pour " + nurseId);
+    getNurseFromID(nurseId).addPatient(SSN);
+}
+exports.addPatientTo = addPatientTo;
 const subjectAddInfirmier = new Subject_1.Subject();
 const subjectRemovedInfirmier = new Subject_1.Subject();
 exports.obsAddedInfirmier = subjectAddInfirmier.asObservable();

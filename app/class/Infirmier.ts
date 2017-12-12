@@ -1,18 +1,29 @@
 import{Personne} from "./Personne";
 import {InfirmierJSON} from "./InfirmierJSON";
 
+
 import {Subject} from "rxjs/Subject";
 
 class Infirmier extends Personne {
   id: string;
+  patientsSSN: string[];
 
   constructor(nom: string, prenom: string, adresse: string, id: string) {
     super(nom, prenom, adresse);
     this.id = id;
+    this.patientsSSN = [];
   }
 
   getId() {
     return this.id;
+  }
+
+  getPatientsSSN() {
+      return this.patientsSSN;
+  }
+
+  addPatient(SSN: string) {
+      this.patientsSSN.push(SSN);
   }
 
   update(nom: string, prenom: string, adresse: string) {
@@ -22,7 +33,7 @@ class Infirmier extends Personne {
   }
 
   toJson(): InfirmierJSON {
-    return Object.assign({}, super.toJson(), { id : this.getId()});
+    return Object.assign({}, super.toJson(), { id : this.getId(), patients : this.getPatientsSSN()});
   }
 }
 
@@ -57,6 +68,14 @@ export function updateNurse(ID: string, nom: string, prenom: string, adresse: st
     N.update(nom, prenom, adresse);
     subjectAddInfirmier.next(N);
 }
+export function emptyNurseMap() {
+    mapNurses.clear();
+}
+export function addPatientTo(nurseId: string, SSN: string) {
+    console.log("ajout de " + SSN + " pour " + nurseId);
+    getNurseFromID(nurseId).addPatient(SSN);
+}
+
 
 
 const subjectAddInfirmier = new Subject<Infirmier>();

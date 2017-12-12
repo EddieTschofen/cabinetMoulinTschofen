@@ -8,7 +8,7 @@ import * as bodyParser from "body-parser";      // Parse HTTP GET and POST varia
 import * as path from "path";                   // Deal with system paths
 import * as fs from "fs-extra";
 import {getRouterNurseRestApi, getRouterPatientRestApi} from "./router";
-import {connectToMongo, loadDatabase} from "@data/mongo";
+import {connectToMongo, initDdbTest, loadDatabase} from "@data/mongo";
 import {getAllNurses} from "./class/Infirmier";
 import {getAllPatients} from "./class/Patient";
 
@@ -100,7 +100,13 @@ app.get("/getDataCabinet", (req, res) => {
     // res.json(getAllNurses().get("1").toJson());
 });
 
+
 app.use("/patient", getRouterPatientRestApi());
 app.use("/nurse", getRouterNurseRestApi());
 
 loadDatabase();
+
+
+app.get("/Init", (req, res) => {
+    initDdbTest();
+});

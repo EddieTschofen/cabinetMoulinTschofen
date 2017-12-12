@@ -5,4 +5,5 @@ export interface InfirmierJSON extends PersonneJSON {
     prenom: string;
     adresse: string;
     id: string;
+    patients: string[];
 }

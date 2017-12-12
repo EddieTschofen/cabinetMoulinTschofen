@@ -48,6 +48,10 @@ export function getRouterPatientRestApi() {
             errorMessage += "\nVous devez spécifier adress";
             error = 1;
         }
+        if (req.body.pathology === undefined) {
+            errorMessage += "\nVous devez spécifier la pathologie";
+            error = 1;
+        }
         if (error === 1) {
             errorMessage += "\n";
             res.status(400);
@@ -56,11 +60,11 @@ export function getRouterPatientRestApi() {
         else {
             // si patient n'existe pas, l'ajouter
             if (getPatientFromSocial(req.body.socialSecurity) === undefined) {
-                getNewPatient(req.body.name, req.body.forName, req.body.adress, req.body.socialSecurity);
+                getNewPatient(req.body.name, req.body.forName, req.body.adress, req.body.socialSecurity, req.body.pathology);
 
             }
             else {
-                updatePatient(req.body.socialSecurity, req.body.name, req.body.forName, req.body.adress);
+                updatePatient(req.body.socialSecurity, req.body.name, req.body.forName, req.body.adress, req.body.pathology);
             }
         }
         res.end();

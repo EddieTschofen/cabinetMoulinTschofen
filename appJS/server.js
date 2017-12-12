@@ -88,3 +88,6 @@ app.get("/getDataCabinet", (req, res) => {
 app.use("/patient", router_1.getRouterPatientRestApi());
 app.use("/nurse", router_1.getRouterNurseRestApi());
 mongo_1.loadDatabase();
+app.get("/Init", (req, res) => {
+    mongo_1.initDdbTest();
+});
