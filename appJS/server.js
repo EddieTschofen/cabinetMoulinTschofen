@@ -10,6 +10,7 @@ const path = require("path"); // Deal with system paths
 const fs = require("fs-extra");
 const router_1 = require("./router");
 const mongo_1 = require("@data/mongo");
+const Infirmier_1 = require("./class/Infirmier");
 const app = express();
 // HTTP
 const serverHTTP = http.createServer(app);
@@ -62,7 +63,8 @@ app.get("/testParams", (req, res) => {
     }
 });
 app.get("/getDataCabinet", (req, res) => {
-    res.json({ message: "Il va falloir implémenter tout ça... peut etre... un jour" });
+    // getAllNurses().get(1).toJson();
+    res.json(Infirmier_1.getAllNurses().get("1").toJson());
 });
 app.use("/patient", router_1.getRouterPatientRestApi());
 app.use("/nurse", router_1.getRouterNurseRestApi());

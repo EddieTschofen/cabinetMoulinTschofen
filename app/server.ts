@@ -9,6 +9,7 @@ import * as path from "path";                   // Deal with system paths
 import * as fs from "fs-extra";
 import {getRouterNurseRestApi, getRouterPatientRestApi} from "./router";
 import {connectToMongo, loadDatabase} from "@data/mongo";
+import {getAllNurses} from "./class/Infirmier";
 
 
 const app: express.Application = express();
@@ -73,7 +74,8 @@ app.get("/testParams", (req, res) => {
 });
 
 app.get("/getDataCabinet", (req, res) => {
-    res.json({message: "Il va falloir implémenter tout ça... peut etre... un jour"});
+    // getAllNurses().get(1).toJson();
+    res.json(getAllNurses().get("1").toJson());
 });
 
 app.use("/patient", getRouterPatientRestApi());
