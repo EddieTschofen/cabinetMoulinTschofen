@@ -94,7 +94,7 @@ app.get("/getDataCabinet", (req, res) => {
 
     let cabinet = {};
     cabinet["nurses"] = nurseJson;
-    cabinet["patient"] = patientJson;
+    cabinet["patients"] = patientJson;
 
     res.json(cabinet);
     // res.json(getAllNurses().get("1").toJson());
