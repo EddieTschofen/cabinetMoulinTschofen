@@ -10,6 +10,7 @@ import * as fs from "fs-extra";
 import {getRouterNurseRestApi, getRouterPatientRestApi} from "./router";
 import {connectToMongo, loadDatabase} from "@data/mongo";
 import {getAllNurses} from "./class/Infirmier";
+import {getAllPatients} from "./class/Patient";
 
 
 const app: express.Application = express();
@@ -76,24 +77,26 @@ app.get("/testParams", (req, res) => {
 app.get("/getDataCabinet", (req, res) => {
     // getAllNurses().get(1).toJson();
     let ns = getAllNurses();
-
-
     let nurseJson = {};
     let index = 1;
     for (let i of ns.values()) {
-
-        nurseJson["nurse"+index] = i;
-        // i.toJson();
-        // res.json(ns.get(i).toJson());
+        nurseJson["nurse" + index] = i;
         index++;
     }
 
-    // var myObj = {};
-    // myObj["first_name"] = "Bob";
-    // myObj["last_name"] = "Smith";
+    let ps = getAllPatients();
+    let patientJson = {};
+    index = 1;
+    for (let i of ps.values()) {
+        patientJson["patient" + index] = i;
+        index++;
+    }
 
-    // nurseJson.e = "test";
-    res.json(nurseJson);
+    let cabinet = {};
+    cabinet["nurses"] = nurseJson;
+    cabinet["patient"] = patientJson;
+
+    res.json(cabinet);
     // res.json(getAllNurses().get("1").toJson());
 });
 

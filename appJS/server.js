@@ -11,6 +11,7 @@ const fs = require("fs-extra");
 const router_1 = require("./router");
 const mongo_1 = require("@data/mongo");
 const Infirmier_1 = require("./class/Infirmier");
+const Patient_1 = require("./class/Patient");
 const app = express();
 // HTTP
 const serverHTTP = http.createServer(app);
@@ -69,15 +70,19 @@ app.get("/getDataCabinet", (req, res) => {
     let index = 1;
     for (let i of ns.values()) {
         nurseJson["nurse" + index] = i;
-        // i.toJson();
-        // res.json(ns.get(i).toJson());
         index++;
     }
-    // var myObj = {};
-    // myObj["first_name"] = "Bob";
-    // myObj["last_name"] = "Smith";
-    // nurseJson.e = "test";
-    res.json(nurseJson);
+    let ps = Patient_1.getAllPatients();
+    let patientJson = {};
+    index = 1;
+    for (let i of ps.values()) {
+        patientJson["patient" + index] = i;
+        index++;
+    }
+    let cabinet = {};
+    cabinet["nurses"] = nurseJson;
+    cabinet["patient"] = patientJson;
+    res.json(cabinet);
     // res.json(getAllNurses().get("1").toJson());
 });
 app.use("/patient", router_1.getRouterPatientRestApi());
