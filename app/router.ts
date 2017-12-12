@@ -18,8 +18,8 @@ export function getRouterPatientRestApi() {
     });
 
     Papp.get("/getPatient/:patientID", (req, res) => {
-        let n = req.params.nurseID;
-        res.json(getAllNurses().get(n));
+        let p = req.params.patientID;
+        res.json(getAllPatients().get(p));
     });
 
     Papp.post("/addOrUpdatePatient", (req, res) => {

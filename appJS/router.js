@@ -15,8 +15,8 @@ function getRouterPatientRestApi() {
         res.end();
     });
     Papp.get("/getPatient/:patientID", (req, res) => {
-        let n = req.params.nurseID;
-        res.json(Infirmier_1.getAllNurses().get(n));
+        let p = req.params.patientID;
+        res.json(Patient_1.getAllPatients().get(p));
     });
     Papp.post("/addOrUpdatePatient", (req, res) => {
         let error = 0;
