@@ -85,7 +85,7 @@ app.get("/getDataCabinet", (req, res) => {
 
     let cabinet = {};
     cabinet["name"] = "Cabinet Moulin-Tschofen";
-    cabinet["address"] = "37 rue de la boustifaille";
+    cabinet["address"] = "Saint-Brieuk";
     cabinet["nurses"] = nurseJson;
     cabinet["patients"] = patientJson;
 
