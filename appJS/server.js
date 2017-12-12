@@ -65,9 +65,19 @@ app.get("/testParams", (req, res) => {
 app.get("/getDataCabinet", (req, res) => {
     // getAllNurses().get(1).toJson();
     let ns = Infirmier_1.getAllNurses();
-    for (let i of ns) {
-        res.json(ns.get(i).toJson());
+    let nurseJson = {};
+    let index = 1;
+    for (let i of ns.values()) {
+        nurseJson["nurse" + index] = i;
+        // i.toJson();
+        // res.json(ns.get(i).toJson());
+        index++;
     }
+    // var myObj = {};
+    // myObj["first_name"] = "Bob";
+    // myObj["last_name"] = "Smith";
+    // nurseJson.e = "test";
+    res.json(nurseJson);
     // res.json(getAllNurses().get("1").toJson());
 });
 app.use("/patient", router_1.getRouterPatientRestApi());
