@@ -72,6 +72,9 @@ app.get("/testParams", (req, res) => {
   }
 });
 
+app.get("/getDataCabinet", (req, res) => {
+    res.json({message: "Il va falloir implémenter tout ça... peut etre... un jour"});
+});
 
 app.use("/patient", getRouterPatientRestApi());
 app.use("/nurse", getRouterNurseRestApi());

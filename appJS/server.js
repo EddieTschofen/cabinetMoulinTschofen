@@ -61,6 +61,9 @@ app.get("/testParams", (req, res) => {
         res.end();
     }
 });
+app.get("/getDataCabinet", (req, res) => {
+    res.json({ message: "Il va falloir implémenter tout ça... peut etre... un jour" });
+});
 app.use("/patient", router_1.getRouterPatientRestApi());
 app.use("/nurse", router_1.getRouterNurseRestApi());
 mongo_1.loadDatabase();
