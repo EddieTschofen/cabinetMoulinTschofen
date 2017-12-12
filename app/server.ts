@@ -8,7 +8,7 @@ import * as bodyParser from "body-parser";      // Parse HTTP GET and POST varia
 import * as path from "path";                   // Deal with system paths
 import * as fs from "fs-extra";
 import {getRouterNurseRestApi, getRouterPatientRestApi} from "./router";
-import {connectToMongo, loadDatabase} from "@data/mongo";
+import {loadDatabase} from "@data/mongo";
 import * as passport from "passport";
 import * as cookieParser from "cookie-parser";
 import {checkIsAuthentified} from "@OAuth/OAuth";
@@ -41,7 +41,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.get("/", (req, res) => {
    res.json( {message: "Il va falloir implémenter tout ça... peut etre... un jour"} );
-   connectToMongo();
 });
 // Auth
 let sessionMiddleware = session({

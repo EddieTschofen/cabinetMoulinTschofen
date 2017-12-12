@@ -107,7 +107,7 @@ export function loadDatabase() {
     });
     patientModel.find(function (err, allPatient) {
         if (err) return console.error(err);
-        console.log(allPatient);
+        //console.log(allPatient);
         allPatient.forEach(function(p){
             patientFromDatabase(p.name, p.forName, p.adress, p.socialSecurity);
         });

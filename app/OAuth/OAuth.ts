@@ -4,24 +4,37 @@ import {PassportUser, passportUsers} from "@OAuth//PassportUser";
 
 export function RegisterOAuth(app: express.Application) {
     passport.serializeUser( (user: PassportUser, done) => {
-        passportUsers.set(user.id, user);
-        done(null, user.id);
+        let usr = passportUsers.set(user.id, user);
+        if (done) done(null, user.id);
+        return usr;
     });
     passport.deserializeUser( (id: string, done) => {
         const user = passportUsers.get(id);
-        done(null, user ? user : false );
+        if (done) done(null, user ? user : false );
     });
 }
 
 export function getOrCreateUser(user: PassportUser) {
     let usr = passportUsers.get(user.id);
-    if (usr === undefined) {
-        usr = passport.serializeUser(usr);
+    if ( usr === undefined ) {
+        usr = passport.serializeUser(user);
         return usr;
     }
     else {
         return usr;
     }
+
+
+
+    /*
+    passport.serializeUser(user);
+    // console.log(user);
+    // let usr = passportUsers.get(user.id);
+    // if (usr === undefined) {
+    //     usr = passport.serializeUser(user);
+    // }
+    // console.log(usr);
+    // // return usr;*/
 }
 
 // Check if client is authentified

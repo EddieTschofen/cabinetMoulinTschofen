@@ -37,7 +37,6 @@ app.use(bodyParser.json()); // get information from html forms
 app.use(bodyParser.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
     res.json({ message: "Il va falloir implémenter tout ça... peut etre... un jour" });
-    mongo_1.connectToMongo();
 });
 // Auth
 let sessionMiddleware = session({

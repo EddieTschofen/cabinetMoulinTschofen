@@ -4,24 +4,36 @@ const passport = require("passport");
 const PassportUser_1 = require("@OAuth//PassportUser");
 function RegisterOAuth(app) {
     passport.serializeUser((user, done) => {
-        PassportUser_1.passportUsers.set(user.id, user);
-        done(null, user.id);
+        let usr = PassportUser_1.passportUsers.set(user.id, user);
+        if (done)
+            done(null, user.id);
+        return usr;
     });
     passport.deserializeUser((id, done) => {
         const user = PassportUser_1.passportUsers.get(id);
-        done(null, user ? user : false);
+        if (done)
+            done(null, user ? user : false);
     });
 }
 exports.RegisterOAuth = RegisterOAuth;
 function getOrCreateUser(user) {
     let usr = PassportUser_1.passportUsers.get(user.id);
     if (usr === undefined) {
-        usr = passport.serializeUser(usr);
+        usr = passport.serializeUser(user);
         return usr;
     }
     else {
         return usr;
     }
+    /*
+    passport.serializeUser(user);
+    // console.log(user);
+    // let usr = passportUsers.get(user.id);
+    // if (usr === undefined) {
+    //     usr = passport.serializeUser(user);
+    // }
+    // console.log(usr);
+    // // return usr;*/
 }
 exports.getOrCreateUser = getOrCreateUser;
 // Check if client is authentified

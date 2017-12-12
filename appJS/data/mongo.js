@@ -85,7 +85,7 @@ function loadDatabase() {
     patientModel.find(function (err, allPatient) {
         if (err)
             return console.error(err);
-        console.log(allPatient);
+        //console.log(allPatient);
         allPatient.forEach(function (p) {
             Patient_1.patientFromDatabase(p.name, p.forName, p.adress, p.socialSecurity);
         });

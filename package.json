@@ -8,7 +8,8 @@
     "compile": "node ./node_modules/typescript/bin/tsc",
     "lint": "node ./node_modules/tslint/bin/tslint --config \"./tslint.json\" \"app/**/*.ts\"",
     "watch:lint": "node ./node_modules/chokidar-cli/index.js ./app/**/*.ts -c \"npm run lint\" --initial --verbose",
-    "compileAndLint": "npm-run-all --parallel watch:lint compile"
+    "compileAndLint": "npm-run-all --parallel watch:lint compile",
+    "inspect": "node --inspect ./appJS/server.js"
   },
   "author": "",
   "license": "ISC",
