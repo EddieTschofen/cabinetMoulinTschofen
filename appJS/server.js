@@ -39,9 +39,6 @@ app.get("/", (req, res) => {
 const datapath = path.join(__dirname, "../app/data");
 console.log(datapath);
 app.use("/data", express.static(datapath));
-app.get("/test", (req, res) => {
-    res.end("Ok tout va bien");
-});
 app.get("/testParams", (req, res) => {
     res.setHeader("Content-type", "Text/html;charset=UTF-8");
     if (req.query.nom === undefined || req.query.prenom === undefined) {
@@ -55,33 +52,79 @@ app.get("/testParams", (req, res) => {
         res.end();
     }
 });
+app.use("/patient", router_1.getRouterPatientRestApi());
+app.use("/nurse", router_1.getRouterNurseRestApi());
+// app.get("/getDataCabinet", (req, res) => {
+//     // getAllNurses().get(1).toJson();
+//     let ns = getAllNurses();
+//     let nurseJson = {};
+//     let index = 1;
+//     for (let i of ns.values()) {
+//         nurseJson["nurse" + index] = i;
+//         index++;
+//     }
+//
+//     let ps = getAllPatients();
+//     let patientJson = {};
+//     index = 1;
+//     for (let i of ps.values()) {
+//         patientJson["patient" + index] = i;
+//         index++;
+//     }
+//
+//     let unaffectedPatients = getUnaffectedPatients();
+//     let upsJson = {};
+//     index = 1;
+//     for (let ups of unaffectedPatients) {
+//         upsJson["unaffectedPatient" + index] = ups;
+//         index++;
+//     }
+//
+//     let cabinet = {};
+//     cabinet["name"] = "Cabinet Moulin-Tschofen";
+//     cabinet["address"] = "Saint-Brieuk";
+//     cabinet["nurses"] = nurseJson;
+//     cabinet["patients"] = patientJson;
+//     cabinet["unaffectedPatients"] = upsJson;
+//
+//     res.json(cabinet);
+//     // res.json(getAllNurses().get("1").toJson());
+// });
 app.get("/getDataCabinet", (req, res) => {
     // getAllNurses().get(1).toJson();
     let ns = Infirmier_1.getAllNurses();
-    let nurseJson = {};
-    let index = 1;
+    let nurseJson = [];
     for (let i of ns.values()) {
-        nurseJson["nurse" + index] = i;
-        index++;
+        nurseJson.push(i);
     }
     let ps = Patient_1.getAllPatients();
-    let patientJson = {};
-    index = 1;
+    let patientJson = [];
     for (let i of ps.values()) {
-        patientJson["patient" + index] = i;
-        index++;
+        patientJson.push(i);
+    }
+    let unaffectedPatients = router_1.getUnaffectedPatients();
+    let upsJson = [];
+    for (let ups of unaffectedPatients) {
+        upsJson.push(ups);
     }
     let cabinet = {};
     cabinet["name"] = "Cabinet Moulin-Tschofen";
     cabinet["address"] = "Saint-Brieuk";
     cabinet["nurses"] = nurseJson;
     cabinet["patients"] = patientJson;
+    cabinet["unaffectedPatients"] = upsJson;
     res.json(cabinet);
     // res.json(getAllNurses().get("1").toJson());
 });
-app.use("/patient", router_1.getRouterPatientRestApi());
-app.use("/nurse", router_1.getRouterNurseRestApi());
-mongo_1.loadDatabase();
 app.get("/Init", (req, res) => {
     mongo_1.initDdbTest();
+    res.end();
 });
+app.get("/addPatient", (req, res) => {
+    // addPatientTo("01","002");
+    Infirmier_1.addPatientTo("01", "001");
+    Infirmier_1.addPatientTo("02", "001");
+    Infirmier_1.addPatientTo("02", "002");
+    res.end();
+});
+mongo_1.loadDatabase();

@@ -73,16 +73,23 @@ export function emptyNurseMap() {
 }
 export function addPatientTo(nurseId: string, SSN: string) {
     let N = getNurseFromID(nurseId);
-    subjectRemovedInfirmier.next(N);
     console.log("ajout de " + SSN + " pour " + nurseId);
     N.addPatient(SSN);
+    subjectUpdateInfirmier.next(N);
     // subjectAddInfirmier.next(N);
+}
+export function addPatientToFromDatabase(nurseId: string, SSN: string){
+    let N = getNurseFromID(nurseId);
+    console.log("ajout de " + SSN + " pour " + nurseId);
+    N.addPatient(SSN);
 }
 
 
 
 const subjectAddInfirmier = new Subject<Infirmier>();
 const subjectRemovedInfirmier = new Subject<Infirmier>();
+const subjectUpdateInfirmier = new Subject<Infirmier>();
 
 export let obsAddedInfirmier = subjectAddInfirmier.asObservable();
 export let obsRemovedInfirmier = subjectRemovedInfirmier.asObservable();
+export let obsUpdateInfirmier = subjectUpdateInfirmier.asObservable();

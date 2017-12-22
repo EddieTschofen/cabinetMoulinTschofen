@@ -67,13 +67,21 @@ function emptyNurseMap() {
 exports.emptyNurseMap = emptyNurseMap;
 function addPatientTo(nurseId, SSN) {
     let N = getNurseFromID(nurseId);
-    subjectRemovedInfirmier.next(N);
     console.log("ajout de " + SSN + " pour " + nurseId);
     N.addPatient(SSN);
+    subjectUpdateInfirmier.next(N);
     // subjectAddInfirmier.next(N);
 }
 exports.addPatientTo = addPatientTo;
+function addPatientToFromDatabase(nurseId, SSN) {
+    let N = getNurseFromID(nurseId);
+    console.log("ajout de " + SSN + " pour " + nurseId);
+    N.addPatient(SSN);
+}
+exports.addPatientToFromDatabase = addPatientToFromDatabase;
 const subjectAddInfirmier = new Subject_1.Subject();
 const subjectRemovedInfirmier = new Subject_1.Subject();
+const subjectUpdateInfirmier = new Subject_1.Subject();
 exports.obsAddedInfirmier = subjectAddInfirmier.asObservable();
 exports.obsRemovedInfirmier = subjectRemovedInfirmier.asObservable();
+exports.obsUpdateInfirmier = subjectUpdateInfirmier.asObservable();

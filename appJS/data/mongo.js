@@ -28,6 +28,7 @@ Patient_1.obsAddedPatient.subscribe(Patient => { AddPatientMongo(Patient); });
 Patient_1.obsRemovedPatient.subscribe(Patient => { RemovePatientMongo(Patient); });
 Infirmier_1.obsAddedInfirmier.subscribe(Infirmier => { AddNurseMongo(Infirmier); });
 Infirmier_1.obsRemovedInfirmier.subscribe(Infirmier => { RemoveNurseMongo(Infirmier); });
+Infirmier_1.obsUpdateInfirmier.subscribe(Infirmier => { UpdateNurseMongo(Infirmier); });
 function AddPatientMongo(p) {
     console.log("AddPatientMongo");
     // connectToMongo();
@@ -70,6 +71,13 @@ function RemoveNurseMongo(n) {
         console.log("suppression err : " + err);
     });
 }
+function UpdateNurseMongo(n) {
+    // connectToMongo();
+    // console.log(n);
+    nurseModel.update({ nurseId: n.getId() }, { $set: { name: n.getNom(), forName: n.getPrenom(), adress: n.getAdresse(), patientsSSN: n.getPatientsSSN() } }, function (err) {
+        console.log("update err : " + err);
+    });
+}
 function connectToMongo() {
     mongoose_1.connect("mongodb://127.0.0.1:27017/cabinet-medical", { useMongoClient: true }).then(() => { console.log("connection reussie"); }, (r) => { console.log("connection refusée : " + r); });
 }
@@ -82,7 +90,9 @@ function loadDatabase() {
         // console.log(allNurses);
         allNurses.forEach(function (n) {
             Infirmier_1.nurseFromDatabase(n.name, n.forName, n.adress, n.nurseId);
-            // TODO : remplir patients
+            n.patientsSSN.forEach(function (p) {
+                Infirmier_1.addPatientToFromDatabase(n.nurseId, p);
+            });
         });
     });
     patientModel.find(function (err, allPatient) {
@@ -103,30 +113,12 @@ function initDdbTest() {
     mongoose.connection.collections["patients"].drop(function (err) {
         console.log("collection dropped");
     });
-    // nurseModel.remove({}, function(err) {
-    //         if (err) {
-    //             console.log(err);
-    //         } else {
-    //             console.log("Empty nurses");
-    //         }
-    //     }
-    // );
-    // patientModel.remove({}, function(err) {
-    //         if (err) {
-    //             console.log(err);
-    //         } else {
-    //             console.log("Empty patients");
-    //         }
-    //     }
-    // );
     Infirmier_1.emptyNurseMap();
     Patient_1.emptyPatientMap();
     Infirmier_1.getNewNurse("Tschoo", "Eddie", "Grenoble", "01");
     Infirmier_1.getNewNurse("Mouls", "Alex", "Grenoble", "02");
     Patient_1.getNewPatient("De Niro", "Robert", "LA", "001", "Gangster");
     Patient_1.getNewPatient("Nicholson", "Jack", "LA", "002", "Fou");
-    Infirmier_1.addPatientTo("01", "001");
-    Infirmier_1.addPatientTo("02", "001");
-    Infirmier_1.addPatientTo("02", "002");
+    Patient_1.getNewPatient("Carrey", "Jim", "LA", "003", "Un peu fou");
 }
 exports.initDdbTest = initDdbTest;

@@ -19,11 +19,8 @@ function getRouterPatientRestApi() {
         res.json(Patient_1.getAllPatients().get(p));
     });
     Papp.get("/getUnaffectedPatients", (req, res) => {
-        let affectedPatients = [];
-        for (let nurse of Infirmier_1.getAllNurses().values()) {
-            affectedPatients.push(nurse.patientsSSN);
-        }
-        res.json(affectedPatients);
+        let unaffectedPatients = getUnaffectedPatients();
+        res.json(unaffectedPatients);
     });
     Papp.post("/addOrUpdatePatient", (req, res) => {
         let error = 0;
@@ -86,9 +83,31 @@ function getRouterPatientRestApi() {
             Patient_1.deletePatient(req.body.socialSecurity);
         }
     });
+    Papp.get("/addPatient/:nurseId/:patient", (req, res) => {
+        Infirmier_1.addPatientTo(req.params.nurseId, req.params.patient);
+        res.end();
+    });
     return Papp;
 }
 exports.getRouterPatientRestApi = getRouterPatientRestApi;
+function getUnaffectedPatients() {
+    let affectedPatients = [];
+    for (let nurse of Infirmier_1.getAllNurses().values()) {
+        nurse.patientsSSN.forEach(function (SSN) {
+            if (affectedPatients.indexOf(SSN) == -1) {
+                affectedPatients.push(SSN);
+            }
+        });
+    }
+    let unaffectedPatients = [];
+    for (let patient of Patient_1.getAllPatients().values()) {
+        if (affectedPatients.indexOf(patient.getSSN()) == -1) {
+            unaffectedPatients.push(patient);
+        }
+    }
+    return unaffectedPatients;
+}
+exports.getUnaffectedPatients = getUnaffectedPatients;
 function getRouterNurseRestApi() {
     let express = require("express");
     // let Napp = express();

@@ -5,9 +5,9 @@ import * as mongoose from "mongoose";
 
 import {connect, model, Schema} from "mongoose";
 import {
-    addPatientTo,
+    addPatientTo, addPatientToFromDatabase,
     emptyNurseMap, getNewNurse, nurseFromDatabase, obsAddedInfirmier,
-    obsRemovedInfirmier
+    obsRemovedInfirmier, obsUpdateInfirmier
 } from "../class/Infirmier";
 import {emptyPatientMap, getNewPatient, obsAddedPatient, obsRemovedPatient,
     patientFromDatabase
@@ -45,6 +45,9 @@ obsAddedInfirmier.subscribe(
 );
 obsRemovedInfirmier.subscribe(
     Infirmier => {RemoveNurseMongo(Infirmier); }
+);
+obsUpdateInfirmier.subscribe(
+    Infirmier => {UpdateNurseMongo(Infirmier); }
 );
 
 function AddPatientMongo(p): any {
@@ -95,6 +98,13 @@ function RemoveNurseMongo(n): any {
          });
 }
 
+function UpdateNurseMongo(n): any {
+    // connectToMongo();
+    // console.log(n);
+    nurseModel.update({ nurseId: n.getId() }, { $set: { name: n.getNom(), forName: n.getPrenom(), adress: n.getAdresse(), patientsSSN: n.getPatientsSSN() }}, function(err){
+       console.log("update err : " + err);
+    });
+}
 
 
 export function connectToMongo() {
@@ -112,7 +122,9 @@ export function loadDatabase() {
         // console.log(allNurses);
         allNurses.forEach(function(n){
             nurseFromDatabase(n.name, n.forName, n.adress, n.nurseId);
-            // TODO : remplir patients
+            n.patientsSSN.forEach(function (p) {
+              addPatientToFromDatabase(n.nurseId,p);
+            })
         });
     });
     patientModel.find(function (err, allPatient) {
@@ -133,22 +145,6 @@ export function initDdbTest() {
     mongoose.connection.collections["patients"].drop( function(err) {
         console.log("collection dropped");
     });
-    // nurseModel.remove({}, function(err) {
-    //         if (err) {
-    //             console.log(err);
-    //         } else {
-    //             console.log("Empty nurses");
-    //         }
-    //     }
-    // );
-    // patientModel.remove({}, function(err) {
-    //         if (err) {
-    //             console.log(err);
-    //         } else {
-    //             console.log("Empty patients");
-    //         }
-    //     }
-    // );
 
     emptyNurseMap();
     emptyPatientMap();
@@ -158,8 +154,6 @@ export function initDdbTest() {
 
     getNewPatient("De Niro", "Robert", "LA", "001", "Gangster");
     getNewPatient("Nicholson", "Jack", "LA", "002", "Fou");
+    getNewPatient("Carrey", "Jim", "LA", "003", "Un peu fou");
 
-    addPatientTo("01", "001");
-    addPatientTo("02", "001");
-    addPatientTo("02", "002");
 }

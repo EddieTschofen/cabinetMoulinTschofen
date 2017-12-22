@@ -1,5 +1,6 @@
 import {deletePatient, getAllPatients, getNewPatient, getPatientFromSocial, updatePatient} from "./class/Patient";
 import {
+    addPatientTo,
     deleteNurses, getAllNurses, getNewNurse, getNurseFromID/*, obsRemovedInfirmier*/, updateNurse
 } from "./class/Infirmier";
 // import {InfirmierJSON} from "./class/InfirmierJSON";
@@ -23,11 +24,8 @@ export function getRouterPatientRestApi() {
     });
 
     Papp.get("/getUnaffectedPatients", (req, res) => {
-        let affectedPatients = [];
-        for (let nurse of getAllNurses().values()){
-            affectedPatients.push(nurse.patientsSSN);
-        }
-        res.json(affectedPatients);
+        let unaffectedPatients = getUnaffectedPatients();
+        res.json(unaffectedPatients);
     });
 
     Papp.post("/addOrUpdatePatient", (req, res) => {
@@ -93,8 +91,36 @@ export function getRouterPatientRestApi() {
             deletePatient(req.body.socialSecurity);
         }
     });
+
+    Papp.get("/addPatient/:nurseId/:patient", (req, res) => {
+        addPatientTo(req.params.nurseId,req.params.patient);
+        res.end();
+    });
+
     return Papp;
 }
+
+
+export function getUnaffectedPatients(){
+    let affectedPatients = [];
+    for (let nurse of getAllNurses().values()){
+        nurse.patientsSSN.forEach(function(SSN){
+            if(affectedPatients.indexOf(SSN) == -1){
+                affectedPatients.push(SSN);
+            }
+        })
+    }
+    let unaffectedPatients = [];
+    for (let patient of getAllPatients().values()){
+        if(affectedPatients.indexOf(patient.getSSN()) == -1){
+            unaffectedPatients.push(patient);
+        }
+    }
+
+    return unaffectedPatients;
+}
+
+
 
 export function getRouterNurseRestApi() {
     let express = require("express");
