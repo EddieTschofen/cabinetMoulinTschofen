@@ -11,7 +11,7 @@ import {getRouterNurseRestApi, getRouterPatientRestApi} from "./router";
 import {loadDatabase} from "@data/mongo";
 import * as passport from "passport";
 import * as cookieParser from "cookie-parser";
-import {checkIsAuthentified} from "@OAuth/OAuth";
+import {checkIsAuthentified, RegisterOAuth} from "@OAuth/OAuth";
 import {initOAuthGoogle} from "@OAuth/OAuthGoogle";
 import * as session from "express-session";
 
@@ -101,11 +101,14 @@ app.get("/testParams", (req, res) => {
 });
 
 
-let configGoogle = {
-    GOOGLE_CLIENT_ID : "1054178353181-8l4urm2hkek8vmr9q2av4uqpbdgde88a.apps.googleusercontent.com",
-    GOOGLE_CLIENT_SECRET : "759FeS5Egj5J_0Y8WqC1qWWB"
-};
-app.use(initOAuthGoogle(configGoogle));
+// let configGoogle = {
+//     GOOGLE_CLIENT_ID : "1054178353181-8l4urm2hkek8vmr9q2av4uqpbdgde88a.apps.googleusercontent.com",
+//     GOOGLE_CLIENT_SECRET : "759FeS5Egj5J_0Y8WqC1qWWB"
+// };
+// app.use(initOAuthGoogle(configGoogle));
+
+app.use(RegisterOAuth(app));
+
 app.use("/patient", getRouterPatientRestApi());
 app.use("/nurse", getRouterNurseRestApi());
 

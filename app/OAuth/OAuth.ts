@@ -1,6 +1,7 @@
 import * as express from "express";
 import * as passport from "passport";
 import {PassportUser, passportUsers} from "@OAuth//PassportUser";
+import {initOAuthGoogle} from "@OAuth/OAuthGoogle";
 
 export function RegisterOAuth(app: express.Application) {
     passport.serializeUser( (user: PassportUser, done) => {
@@ -12,6 +13,12 @@ export function RegisterOAuth(app: express.Application) {
         const user = passportUsers.get(id);
         if (done) done(null, user ? user : false );
     });
+
+    let configGoogle = {
+        GOOGLE_CLIENT_ID : "1054178353181-8l4urm2hkek8vmr9q2av4uqpbdgde88a.apps.googleusercontent.com",
+        GOOGLE_CLIENT_SECRET : "759FeS5Egj5J_0Y8WqC1qWWB"
+    };
+    return initOAuthGoogle(configGoogle);
 }
 
 export function getOrCreateUser(user: PassportUser) {

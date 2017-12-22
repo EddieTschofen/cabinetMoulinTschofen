@@ -23,7 +23,7 @@ export function initOAuthGoogle(config: {GOOGLE_CLIENT_ID: string, GOOGLE_CLIENT
                 photos: photos.map(val => val.value),
                 provider: "google"
             };
-            getOrCreateUser(user); // Vous devez implémenter cette fonction
+            // getOrCreateUser(user); // Vous devez implémenter cette fonction
             done(null, user);
         }
     ));

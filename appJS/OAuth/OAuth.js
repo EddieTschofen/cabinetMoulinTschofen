@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const passport = require("passport");
 const PassportUser_1 = require("@OAuth//PassportUser");
+const OAuthGoogle_1 = require("@OAuth/OAuthGoogle");
 function RegisterOAuth(app) {
     passport.serializeUser((user, done) => {
         let usr = PassportUser_1.passportUsers.set(user.id, user);
@@ -14,6 +15,11 @@ function RegisterOAuth(app) {
         if (done)
             done(null, user ? user : false);
     });
+    let configGoogle = {
+        GOOGLE_CLIENT_ID: "1054178353181-8l4urm2hkek8vmr9q2av4uqpbdgde88a.apps.googleusercontent.com",
+        GOOGLE_CLIENT_SECRET: "759FeS5Egj5J_0Y8WqC1qWWB"
+    };
+    return OAuthGoogle_1.initOAuthGoogle(configGoogle);
 }
 exports.RegisterOAuth = RegisterOAuth;
 function getOrCreateUser(user) {
