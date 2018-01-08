@@ -80,7 +80,7 @@ export function getRouterPatientRestApi() {
         }
         res.end();
     });
-
+ 
     Papp.post("/deletePatient/:patientId", (req, res) => {
         console.log(req.params);
         if (req.params.patientId === undefined) {
