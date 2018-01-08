@@ -117,6 +117,7 @@ function initDdbTest() {
     Patient_1.emptyPatientMap();
     Infirmier_1.getNewNurse("Tschoo", "Eddie", "Grenoble", "01");
     Infirmier_1.getNewNurse("Mouls", "Alex", "Grenoble", "02");
+    Infirmier_1.getNewNurse("Masson", "Yohan", "Lyon", "03");
     Patient_1.getNewPatient("De Niro", "Robert", "LA", "001", "Gangster");
     Patient_1.getNewPatient("Nicholson", "Jack", "LA", "002", "Fou");
     Patient_1.getNewPatient("Carrey", "Jim", "LA", "003", "Un peu fou");

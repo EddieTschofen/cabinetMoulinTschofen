@@ -108,7 +108,7 @@ app.use("/nurse", getRouterNurseRestApi());
 app.get("/getDataCabinet", (req, res) => {
     // getAllNurses().get(1).toJson();
     let ns = getAllNurses();
-    let nurseJson = []
+    let nurseJson = [];
     for (let i of ns.values()) {
         nurseJson.push(i);
     }

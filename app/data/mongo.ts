@@ -151,6 +151,7 @@ export function initDdbTest() {
 
     getNewNurse("Tschoo", "Eddie", "Grenoble", "01");
     getNewNurse("Mouls", "Alex", "Grenoble", "02");
+    getNewNurse("Masson", "Yohan", "Lyon", "03");
 
     getNewPatient("De Niro", "Robert", "LA", "001", "Gangster");
     getNewPatient("Nicholson", "Jack", "LA", "002", "Fou");

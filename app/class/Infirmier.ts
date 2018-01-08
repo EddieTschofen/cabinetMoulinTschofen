@@ -26,6 +26,10 @@ class Infirmier extends Personne {
       this.patientsSSN.push(SSN);
   }
 
+  removePatient(id: number) {
+      this.patientsSSN.splice(id, 1);
+  }
+
   update(nom: string, prenom: string, adresse: string) {
     this.nom = nom;
     this.prenom = prenom;
@@ -75,6 +79,18 @@ export function addPatientTo(nurseId: string, SSN: string) {
     let N = getNurseFromID(nurseId);
     console.log("ajout de " + SSN + " pour " + nurseId);
     N.addPatient(SSN);
+    subjectUpdateInfirmier.next(N);
+    // subjectAddInfirmier.next(N);
+}
+export function removePatientTo(nurseId: string, SSN: string) {
+    console.log("eee");
+    let N = getNurseFromID(nurseId);
+    for (let i = 0; i < N.getPatientsSSN().length; i++) {
+        if (N.getPatientsSSN()[i] === SSN ) {
+            N.removePatient(i);
+        }
+    }
+    console.log("Supression de " + SSN + " pour " + nurseId);
     subjectUpdateInfirmier.next(N);
     // subjectAddInfirmier.next(N);
 }
